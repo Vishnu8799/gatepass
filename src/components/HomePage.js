@@ -28,19 +28,20 @@ function HomePage({ onLogout }) {
   return (
     <div className="login_screen_container">
       <Row className="content">
-        <div className="login_greeting_con">
+        <div className="home_greeting_con">
           <div
             style={{ display: "flex", justifyContent: "center", width: "100%" }}
           >
             Gate Pass
           </div>
+          {/* <div>Logout</div> */}
         </div>
-        <div className="login_inputs_con">
+        <div className="Home_inputs_con">
           <form onSubmit={handleSubmit}>
-            <Row>
-              <div>
+            <Row style={{ padding: "20px" }}>
+              <div style={{ padding: "10px" }}>
                 <label>
-                  Name:
+                  Name :{" "}
                   <input
                     type="text"
                     value={name}
@@ -49,9 +50,9 @@ function HomePage({ onLogout }) {
                   />
                 </label>
               </div>
-              <div>
+              <div style={{ padding: "10px" }}>
                 <label>
-                  Date:
+                  Date :{" "}
                   <input
                     type="date"
                     value={date}
@@ -60,9 +61,9 @@ function HomePage({ onLogout }) {
                   />
                 </label>
               </div>
-              <div className="login_eye_con_fixed">
+              <div style={{ padding: "10px" }}>
                 <label>
-                  Start Time:
+                  Start Time :{" "}
                   <input
                     type="time"
                     value={startTime}
@@ -71,9 +72,9 @@ function HomePage({ onLogout }) {
                   />
                 </label>
               </div>
-              <div className="login_eye_con_fixed">
+              <div className="login_eye_con_fixed" style={{ padding: "10px" }}>
                 <label>
-                  End Time:
+                  End Time :{" "}
                   <input
                     type="time"
                     value={endTime}
@@ -83,11 +84,16 @@ function HomePage({ onLogout }) {
                 </label>
               </div>
             </Row>
-            <Row style={{ width: "100%" }}>
-              <div className="generatebutton" onClick={handleSubmit}>
-                Generate
-              </div>
-            </Row>
+            <div
+              style={{
+                width: "100%",
+                justifyContent: "center",
+                display: "flex",
+              }}
+              onClick={handleSubmit}
+            >
+              <div className="generatebutton">Generate</div>
+            </div>
           </form>
         </div>
       </Row>

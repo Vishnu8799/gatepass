@@ -2,6 +2,8 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: 50%;
   height: 60%;
+  border: 1px solid black;
+  /* background-color: ; */
 }
 
 .loginheader {
@@ -27,7 +29,7 @@
 
 .generatebutton {
   background-color: rgba(13, 110, 253, 1);
-  width: 500%;
+  width: 50%;
   height: 50px;
   color: #fff;
   display: flex;
@@ -37,6 +39,7 @@
   border-radius: 5px;
   font-family: JS_Bold;
   cursor: pointer;
+  
 }
 
 .inputTime {
@@ -120,6 +123,25 @@
   font-size: 28px;
   font-family: JS_Bold;
 }
+
+.home_greeting_con{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-top: 20px;
+
+}
+
+.home_greeting_con > div {
+  color: #000;
+  font-weight: bold;
+  font-size: 28px;
+  font-family: JS_Bold;
+}
+
 .greet_info {
   color: grey !important;
   font-weight: normal !important;
@@ -129,9 +151,20 @@
 .login_inputs_con {
   /* border: 1px solid #000; */
   width: 100%;
-  /* height: 30%; */
+  height: auto;
   padding: 10px;
 }
+
+.Home_inputs_con {
+  /* border: 1px solid #000; */
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  /* justify-content: left;
+  align-items: Right; */
+}
+
+
 .login_forgot_con {
   /* border: 1px solid #000; */
   width: 100%;
