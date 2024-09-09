@@ -25,7 +25,7 @@ function LoginPage({ onLogin }) {
 
   return (
     <div className="login_screen_container">
-      <Row>
+      <Row className="login_card">
         <div className="login_greeting_con">
           <div>Welcome back!</div>
           <div className="greet_info">please login to your account</div>
