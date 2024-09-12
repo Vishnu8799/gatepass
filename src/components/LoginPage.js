@@ -20,8 +20,8 @@ function LoginPage({ onLogin }) {
     }
   };
 
-  const validUsername = "Dharun";
-  const validPassword = "Dharun@123";
+  const validUsername = "Kaviya";
+  const validPassword = "Kaviya@123";
 
   return (
     <div className="login_screen_container">

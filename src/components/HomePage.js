@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import InputFeild from "./Input/Input";
-import { Row } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import "../components/login.css";
 
 function HomePage({ onLogout }) {
@@ -9,6 +8,7 @@ function HomePage({ onLogout }) {
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -16,32 +16,51 @@ function HomePage({ onLogout }) {
     navigate("/login");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(
-      `Name: ${name}\nDate: ${date}\nStart Time: ${startTime}\nEnd Time: ${endTime}`
-    );
+  const validateForm = () => {
+    let formErrors = {};
+
+    if (!name) formErrors.name = "Name is required.";
+    if (!date) formErrors.date = "Date is required.";
+    if (!startTime) formErrors.startTime = "Start Time is required.";
+    if (!endTime) formErrors.endTime = "End Time is required.";
+
+    // Ensure end time is after start time
+    if (startTime && endTime && startTime >= endTime) {
+      formErrors.time = "End Time must be after Start Time.";
+    }
+
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0; // Return true if no errors
   };
 
-  <button onClick={handleLogout}>Logout</button>;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (validateForm()) {
+      alert(
+        `Name: ${name}\nDate: ${date}\nStart Time: ${startTime}\nEnd Time: ${endTime}`
+      );
+    }
+  };
 
   return (
     <div className="login_screen_container">
       <Row className="content">
-        <div className="home_greeting_con">
-          <div
-            style={{ display: "flex", justifyContent: "center", width: "100%" }}
-          >
+        <Row className="home_greeting_con">
+          <Col lg={11}>
             Gate Pass
-          </div>
-          {/* <div>Logout</div> */}
-        </div>
+          </Col>
+          <Col lg={1} style={{fontSize:'18px',cursor:'pointer'}} onClick={handleLogout}>
+            Logout
+          </Col>
+        </Row>
+
         <div className="Home_inputs_con">
           <form onSubmit={handleSubmit}>
             <Row style={{ padding: "20px" }}>
               <div style={{ padding: "10px" }}>
                 <label>
-                  Name :{" "}
+                  Name :
                   <input
                     type="text"
                     value={name}
@@ -49,10 +68,12 @@ function HomePage({ onLogout }) {
                     required
                   />
                 </label>
+                {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
               </div>
+
               <div style={{ padding: "10px" }}>
                 <label>
-                  Date :{" "}
+                  Date :
                   <input
                     type="date"
                     value={date}
@@ -60,10 +81,12 @@ function HomePage({ onLogout }) {
                     required
                   />
                 </label>
+                {errors.date && <p style={{ color: "red" }}>{errors.date}</p>}
               </div>
+
               <div style={{ padding: "10px" }}>
                 <label>
-                  Start Time :{" "}
+                  Start Time : 
                   <input
                     type="time"
                     value={startTime}
@@ -71,10 +94,14 @@ function HomePage({ onLogout }) {
                     required
                   />
                 </label>
+                {errors.startTime && (
+                  <p style={{ color: "red" }}>{errors.startTime}</p>
+                )}
               </div>
-              <div className="login_eye_con_fixed" style={{ padding: "10px" }}>
+
+              <div style={{ padding: "10px" }}>
                 <label>
-                  End Time :{" "}
+                  End Time :
                   <input
                     type="time"
                     value={endTime}
@@ -82,17 +109,23 @@ function HomePage({ onLogout }) {
                     required
                   />
                 </label>
+                {errors.endTime && (
+                  <p style={{ color: "red" }}>{errors.endTime}</p>
+                )}
+                {errors.time && <p style={{ color: "red" }}>{errors.time}</p>}
               </div>
             </Row>
+
             <div
               style={{
                 width: "100%",
                 justifyContent: "center",
                 display: "flex",
               }}
-              onClick={handleSubmit}
             >
-              <div className="generatebutton">Generate</div>
+              <button type="submit" className="generatebutton">
+                Generate
+              </button>
             </div>
           </form>
         </div>
